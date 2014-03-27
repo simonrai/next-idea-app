@@ -2,9 +2,9 @@
 
 ideafy.io - a feedback generator for tech startups 
 
-Brought to you by Lighthouse Labs / Raize Web Marketing / Alishah Mohbat Ali
+brought to you by lighthouse labs / raize web marketing / alishah mohbat ali
 
-Copyright March 27, 2014
+copyright march 27, 2014
 
 =============
 
