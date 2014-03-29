@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321144528) do
+ActiveRecord::Schema.define(version: 20140328001431) do
+
+  create_table "comments", force: true do |t|
+    t.integer "user_id"
+    t.integer "idea_id"
+    t.boolean "for_or_against"
+    t.string  "content"
+    t.integer "vote_count"
+  end
+
+  create_table "ideas", force: true do |t|
+    t.string  "titke"
+    t.string  "content"
+    t.string  "url"
+    t.integer "user_id"
+    t.integer "vote_count"
+    t.integer "comment_count"
+    t.integer "total_score"
+  end
 
   create_table "users", force: true do |t|
-    t.string "name"
+    t.string "username"
+    t.string "password"
     t.string "email"
   end
 
