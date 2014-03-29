@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328001431) do
+ActiveRecord::Schema.define(version: 20140328002627) do
+
+  create_table "comment_votes", force: true do |t|
+    t.integer "comment_id"
+    t.integer "idea_id"
+    t.boolean "upvote"
+  end
 
   create_table "comments", force: true do |t|
     t.integer "user_id"
@@ -20,8 +26,14 @@ ActiveRecord::Schema.define(version: 20140328001431) do
     t.integer "vote_count"
   end
 
+  create_table "idea_votes", force: true do |t|
+    t.integer "user_id"
+    t.integer "idea_id"
+    t.boolean "like"
+  end
+
   create_table "ideas", force: true do |t|
-    t.string  "titke"
+    t.string  "title"
     t.string  "content"
     t.string  "url"
     t.integer "user_id"

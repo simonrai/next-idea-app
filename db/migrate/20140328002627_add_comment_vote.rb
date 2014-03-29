@@ -4,5 +4,6 @@ class AddCommentVote < ActiveRecord::Migration
   		t.integer :comment_id
   		t.integer :idea_id
   		t.boolean :upvote
+  	end
   end
 end
