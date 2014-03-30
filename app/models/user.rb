@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
 
 	has_many :ideas
 	has_many :comments
-	has_many :ideavotes
-	has_many :commentvotes
+	has_many :idea_votes
+	has_many :comment_votes
 
 	validates :username, presence: true, length: { maximum: 50 }, uniqueness: true 
 

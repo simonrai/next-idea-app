@@ -80,11 +80,19 @@ end
 
 # # Likes/Dislikes
 
-# post '/ideas/:idea_id/likes' do 
-#     @idea = Idea.find params[:idea_id]
-#     @like = @idea.idea_votes.current_user.idea_votes.find()
-# end
 
+post '/ideas/:idea_id/likes' do 
+    @idea = Idea.find(params[:idea_id])
+    @like = IdeaVote.new(
+      user_id: current_user.id,
+      idea_id: params[:idea_id],
+      like: params[:like]
+      )
+    if @like.save
+      redirect "/ideas/#{@idea.id}"
+    end
+end
+  
 # # Create Like
 
 # post '/songs/:song_id/upvotes' do

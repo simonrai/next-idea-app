@@ -4,12 +4,16 @@
 <h1><%= @idea.title %></h1>
 <p><%= @idea.content %></p>
 
-<form action = "/ideas/:id" method = "post">
-	<input type = "submit" value = "like">
-</form><br/>
+<% if current_user.idea_votes.find_by(idea_id: @idea.id) %>
+	Already voted
+<% else %>
+	<form action = "/ideas/<%= @idea.id %>/likes?like=true" method = "post">
+		<input type = "submit" value = "Like">
+	</form><br/>
 
-<form action = "/ideas/:id" method = "post">
-	<input type = "submit" value = "dislike">
-</form>
-
+	<form action = "/ideas/<%= @idea.id %>/likes?like=false" method = "post">
+		<input type = "submit" value = "Dislike">
+	</form>
+<% end %>
 </div>
+
