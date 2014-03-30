@@ -1,0 +1,14 @@
+<h1>All Ideas</h1>
+<hr/>
+
+<% @ideas.each do |idea| %>
+  <div class="idea">
+    <h3><a href="/ideas/<%= idea.id %>"><%= idea.title %></a> <small>(by: <%= idea.author %>)</small></h3>
+    <p>
+      <%= idea.content %>
+    </p>
+  </div>
+<% end %>
+
+<hr/>
+<a href="/ideas/new">Click here to Post Your Idea</a>
