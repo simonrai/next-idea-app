@@ -82,22 +82,26 @@ end
 
 
 post '/ideas/:idea_id/likes' do 
-    @idea = Idea.find(params[:idea_id])
-    @like = IdeaVote.new(
-      user_id: current_user.id,
-      idea_id: params[:idea_id],
-      like: params[:like]
-      )
-    if @like.save
-      redirect "/ideas/#{@idea.id}"
-    end
+  @idea = Idea.find(params[:idea_id])
+  @like = @idea.idea_votes.new(
+    user: current_user,
+    like: params[:like]
+    )
+  if @like.save
+    redirect "/ideas/#{@idea.id}"
+  else
+    @idea.errors.full_messages.inspect
+  end
 end
-  
-# # Create Like
 
-# post '/songs/:song_id/upvotes' do
-#    @song = Song.find params[:song_id]
-#    @upvote = @song.upvotes.create(user: current_user)
-#     redirect '/songs'
-# end
-
+post '/ideas/:idea_id/comments'do
+  @idea = Idea.find(params[:idea_id])
+  @comment = @idea.comments.new(
+    user: current_user,
+    content: params[:content],
+    for_or_against: params[:like]
+    )
+  if @comment.save
+    redirect "/ideas/#{@idea.id}"
+  end
+end

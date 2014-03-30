@@ -3,17 +3,45 @@
 <a href = "/">Back To All Ideas</a>
 <h1><%= @idea.title %></h1>
 <p><%= @idea.content %></p>
+<% vote = current_user.idea_votes.find_by(idea_id: @idea.id) %> 
+<% if vote %>
 
-<% if current_user.idea_votes.find_by(idea_id: @idea.id) %>
-	Already voted
+	You have already voted
+
+	<% if vote.like && !current_user.comment %>
+
+		<form action = "/ideas/<%= @idea.id %>/comments?like=true" 
+		method = "post">
+			<div class="input-group">
+	    <span class="input-group-addon">Why do you like this idea?</span>
+	    <input type="text" 
+	    class="form-control" 
+	    name="content">
+	  </div><br/>
+		</form>
+
+	<% else %>
+		<form action = "/ideas/<%= @idea.id %>/comments?like=false" 
+		method = "post">
+			<div class="input-group">
+	    <span class="input-group-addon">Why do you dislike this idea?</span>
+	    <input type="text" 
+	    class="form-control" 
+	    name="content">
+	  </div><br/>
+		</form>
+	<%end%>
+
 <% else %>
-	<form action = "/ideas/<%= @idea.id %>/likes?like=true" method = "post">
+	<form action = "/ideas/<%= @idea.id %>/likes?like=true" 
+	method = "post">
 		<input type = "submit" value = "Like">
 	</form><br/>
-
 	<form action = "/ideas/<%= @idea.id %>/likes?like=false" method = "post">
 		<input type = "submit" value = "Dislike">
 	</form>
 <% end %>
 </div>
 
+
+<!-- This page should display all the comments -->
