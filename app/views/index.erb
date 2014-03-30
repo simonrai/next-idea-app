@@ -1,10 +1,11 @@
-<h1>Ideas</h1>
+<h1>All Ideas</h1>
+<hr/>
+
+<nav><a href ="/login/">Login</a> or <a href ="/signup">Sign Up</a> to post your idea.</nav>
+
 	<% @ideas.each do |idea| %>
-		<div class="ideas">
-			<h3>
-				<%= idea.title %> 
-				<small>
-				(by: <%= User.find(idea.user_id).username %>) 
-				</small>
-			</h3>
+		<div class="idea">
+			<h3><a href="/ideas/<%= idea.id %>"><%= idea.title %></a></h3>
+			<small>(by: <%= User.find(idea.user_id).username %>)</small>
+		</div>
 	<%end%>
