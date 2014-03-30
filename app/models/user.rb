@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
 
 	validates :email, presence: true, length: { maximum: 100 }, uniqueness: true
 
+	def already_commented(idea)
+		!!self.comments.find_by(idea_id: idea.id)
+	end
+
 end

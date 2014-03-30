@@ -7,29 +7,29 @@
 <% if vote %>
 
 	You have already voted
+	<% unless current_user.already_commented(@idea) %>
+		<% if vote.like %>
+			<form action = "/ideas/<%= @idea.id %>/comments?like=true" 
+			method = "post">
+				<div class="input-group">
+		    <span class="input-group-addon">Why do you like this idea?</span>
+		    <input type="text" 
+		    class="form-control" 
+		    name="content">
+		  </div><br/>
+			</form>
 
-	<% if vote.like && !current_user.comment %>
-
-		<form action = "/ideas/<%= @idea.id %>/comments?like=true" 
-		method = "post">
-			<div class="input-group">
-	    <span class="input-group-addon">Why do you like this idea?</span>
-	    <input type="text" 
-	    class="form-control" 
-	    name="content">
-	  </div><br/>
-		</form>
-
-	<% else %>
-		<form action = "/ideas/<%= @idea.id %>/comments?like=false" 
-		method = "post">
-			<div class="input-group">
-	    <span class="input-group-addon">Why do you dislike this idea?</span>
-	    <input type="text" 
-	    class="form-control" 
-	    name="content">
-	  </div><br/>
-		</form>
+		<% else %>
+			<form action = "/ideas/<%= @idea.id %>/comments?like=false" 
+			method = "post">
+				<div class="input-group">
+		    <span class="input-group-addon">Why do you dislike this idea?</span>
+		    <input type="text" 
+		    class="form-control" 
+		    name="content">
+		  </div><br/>
+			</form>
+		<%end%>
 	<%end%>
 
 <% else %>
@@ -42,6 +42,15 @@
 	</form>
 <% end %>
 </div>
+<div class="container" style="padding-top: 15px;">
+	<h3>Comments:</h3>
+	<p>
+	 	<% @idea.comments.each do |comment| %>
+	 	<strong><%= comment.user.username %> :</strong>
+	  <%= comment.content %> </br>
+	  <% end %>
+	</p>
+ </div>
 
 
 <!-- This page should display all the comments -->
