@@ -1,3 +1,15 @@
-<!--     <p>
-      <%= idea.content %>
-    </p> -->
+<div class="container" style="padding-top: 165px;">
+
+<a href = "/">Back To All Ideas</a>
+<h1><%= @idea.title %></h1>
+<p><%= @idea.content %></p>
+
+<form action = "/ideas/:id" method = "post">
+	<input type = "submit" value = "like">
+</form><br/>
+
+<form action = "/ideas/:id" method = "post">
+	<input type = "submit" value = "dislike">
+</form>
+
+</div>

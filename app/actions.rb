@@ -38,6 +38,11 @@ post '/ideas/new' do
   end
 end
 
+get '/ideas/:id' do
+  @idea = Idea.find params[:id]
+  erb :'ideas/single'
+end
+
 # Form Auth
 
 post '/signup' do
@@ -72,3 +77,19 @@ post '/logout' do
   session[:user_id] = nil
   redirect '/'
 end
+
+# # Likes/Dislikes
+
+# post '/ideas/:idea_id/likes' do 
+#     @idea = Idea.find params[:idea_id]
+#     @like = @idea.idea_votes.current_user.idea_votes.find()
+# end
+
+# # Create Like
+
+# post '/songs/:song_id/upvotes' do
+#    @song = Song.find params[:song_id]
+#    @upvote = @song.upvotes.create(user: current_user)
+#     redirect '/songs'
+# end
+
