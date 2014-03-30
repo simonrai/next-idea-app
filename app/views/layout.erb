@@ -7,6 +7,10 @@
     See: http://necolas.github.com/normalize.css/
   -->
   <link rel="stylesheet" href="/stylesheets/normalize.css">
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
   <!--
     application.css is where you put your styles
   -->
@@ -18,6 +22,24 @@
   <title></title>
 </head>
 <body>
+    <header>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <h1><a href="/">Ideafy</a> - Instant feedback on your idea.</h1>
+        <% if current_user %>
+          <h4>Welcome to Ideafy. You are currently signed in as <%= current_user.username %>.</h4>
+<!--           <form method="post" action="/logout">
+            <input type="submit" value="Logout" class="btn btn-default navbar-btn">
+          </form> -->
+          <button type="button" class="btn btn-default navbar-btn">Logout</button>
+          <button type="button" class="btn btn-default navbar-btn">Post New Idea</button>
+        <% else %>
+          <h4>Welcome to Ideafy. Please <a href="/signup">Sign up</a> or <a href="/login">Log In</a> to begin using the site.</h4>
+        <% end %>
+      </div>
+    </nav>
+  </header>
+
   <%= yield %>
 </body>
 </html>
