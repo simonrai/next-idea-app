@@ -5,6 +5,6 @@ class Idea < ActiveRecord::Base
 	has_many :ideavotes
 
 	validates :title, presence: true, length: { maximum: 140 }
-	valdates :content, presence: true, length: { maximum: 1000 } 
+	validates :content, presence: true, length: { maximum: 1000 } 
 
 end

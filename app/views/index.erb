@@ -1,1 +1,10 @@
-<h1>Home Page</h1>
+<h1>Ideas</h1>
+	<% @ideas.each do |idea| %>
+		<div class="ideas">
+			<h3>
+				<%= idea.title %> 
+				<small>
+				(by: <%= User.find(idea.user_id).username %>) 
+				</small>
+			</h3>
+	<%end%>
