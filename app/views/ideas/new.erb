@@ -1,0 +1,26 @@
+<div class="container" style="padding-top: 170px;">
+
+<form method="post" action="/ideas/new">
+
+  <div class="input-group">
+    <span class="input-group-addon">Title</span>
+    <input type="text" class="form-control" name="title" value="<%= @idea && @idea.title %>">
+  </div><br/>
+
+  <div class="input-group">
+    <span class="input-group-addon">Content</span>
+    <input type="text" class="form-control" name="content" value="<%= @idea && @idea.content %>">
+  </div><br/>
+
+<!--   <div class="input-group">
+    <span class="input-group-addon">URL (Optional)</span>
+    <input type="text" class="form-control" name="url" value="<%= @idea && @idea.url %>">
+  </div><br/> -->
+
+  <div>
+    <input type="submit" value="Submit" class="btn btn-default">
+  </div>
+
+</form>
+
+</div>

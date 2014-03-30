@@ -18,6 +18,26 @@ get '/login' do
 	erb :'auth/login'
 end
 
+# Ideas
+
+get '/ideas/new' do
+  erb :'ideas/new'
+end
+
+post '/ideas/new' do
+  @idea = Idea.new(
+    title: params[:title],
+    content: params[:content],
+    # url: params[:url]
+    user_id: current_user.id
+    )
+  if @idea.save
+    redirect '/'
+  else
+    erb :'ideas/new'
+  end
+end
+
 # Form Auth
 
 post '/signup' do
@@ -29,7 +49,7 @@ post '/signup' do
 
   if @user.save
     session[:user_id] = @user.id
-    redirect '/auth/thanks'
+    redirect '/'
   else
     erb :'auth/signup'
   end
