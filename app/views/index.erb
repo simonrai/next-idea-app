@@ -1,8 +1,15 @@
+
+<nav>
+
+<a href ="/login/">Login</a> or <a href ="/signup">sign Up</a> to Ideafy your idea
+
+</nav>
+
 <h1>Ideas</h1>
 	<% @ideas.each do |idea| %>
 		<div class="ideas">
 			<h3>
-				<%= idea.title %> 
+				<a href ="/ideas/<%= idea.id %>"><%= idea.title %></a>
 				<small>
 				(by: <%= User.find(idea.user_id).username %>) 
 				</small>
