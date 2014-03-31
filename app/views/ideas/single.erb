@@ -1,8 +1,19 @@
 <div class="container" style="padding-top: 165px;">
+<% if !current_user %>
 
 <a href = "/">Back To All Ideas</a>
 <h1><%= @idea.title %></h1>
 <p><%= @idea.content %></p>
+
+
+
+
+<% else %>
+
+<a href = "/">Back To All Ideas</a>
+<h1><%= @idea.title %></h1>
+<p><%= @idea.content %></p>
+
 <% vote = current_user.idea_votes.find_by(idea_id: @idea.id) %> 
 <% if vote %>
 
@@ -42,6 +53,8 @@
 	</form>
 <% end %>
 </div>
+
+<%end%>
 <div class="container" style="padding-top: 15px;">
 	<h3>Comments:</h3>
 	<p>
@@ -51,6 +64,8 @@
 	  <% end %>
 	</p>
  </div>
+
+
 
 
 <!-- This page should display all the comments -->

@@ -3,7 +3,13 @@
 
 <% @ideas.each do |idea| %>
   <div class="idea">
-    <h3><a href="/ideas/<%= idea.id %>"><%= idea.title %></a> <small>(by: <%= idea.author %>)</small></h3>
+    <h3><a href="/ideas/<%= idea.id %>"><%= idea.title %></a> 
+    	<%= idea.comment_count || 0 %> 
+    </h3>
+
+    <small>(by: <%= idea.author %>)
+    </small>
+
     <p>
       <%= idea.content %>
     </p>

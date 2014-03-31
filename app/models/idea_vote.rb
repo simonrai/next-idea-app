@@ -1,14 +1,6 @@
 class IdeaVote < ActiveRecord::Base
 
 	belongs_to :user
-	belongs_to :idea
+	belongs_to :idea, counter_cache: :vote_count
 
-	# after_create: increase_idea_vote_count, if: :user
-
-	# private
-
-	# def increase_idea_vote_count
-	# 	self.idea.vote_count += 1
-	# end
-
-end
+ end

@@ -4,7 +4,12 @@
 
 <% @ideas.each do |idea| %>
 	<div class="idea">
-		<h3><a href="/ideas/<%= idea.id %>"><%= idea.title %></a></h3><small>(by: <%= User.find(idea.user_id).username %>)</small>
+		<h3><a href="/ideas/<%= idea.id %>"><%= idea.title %></a></h3>
+		<h4>Vote count: <%= idea.vote_count %>
+		 Comment count: <%= idea.comment_count %>
+		</h4>
+	
+		<small>(by: <%= User.find(idea.user_id).username %>)</small>
 	</div>
 <%end%>
 
