@@ -5,12 +5,13 @@
 <h1><%= @idea.title %></h1>
 <p><%= @idea.content %></p>
 
-
-
-
 <% else %>
+<div class="panel panel-primary">
+<div class="panel-heading">
+    <h3 class="panel-title">Idea</h3>
+  </div>
+  <div class="panel-body">
 
-<a href = "/">Back To All Ideas</a>
 <h1><%= @idea.title %></h1>
 <p><%= @idea.content %></p>
 
@@ -23,7 +24,7 @@
 			<form action = "/ideas/<%= @idea.id %>/comments?like=true" 
 			method = "post">
 				<div class="input-group">
-		    <span class="input-group-addon">Why do you like this idea?</span>
+		    <span class="input-group-addon">What do you like about this idea?</span>
 		    <input type="text" 
 		    class="form-control" 
 		    name="content">
@@ -34,7 +35,7 @@
 			<form action = "/ideas/<%= @idea.id %>/comments?like=false" 
 			method = "post">
 				<div class="input-group">
-		    <span class="input-group-addon">Why do you dislike this idea?</span>
+		    <span class="input-group-addon">What do you dislike about this idea?</span>
 		    <input type="text" 
 		    class="form-control" 
 		    name="content">
@@ -44,27 +45,43 @@
 	<%end%>
 
 <% else %>
-	<form action = "/ideas/<%= @idea.id %>/likes?like=true" 
+
+	<form class="form-inline" action = "/ideas/<%= @idea.id %>/likes?like=true" 
 	method = "post">
-		<input type = "submit" value = "Like">
+	<button type = "submit" value = "Dislike" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-thumbs-up"></span> Like</button>
 	</form><br/>
-	<form action = "/ideas/<%= @idea.id %>/likes?like=false" method = "post">
-		<input type = "submit" value = "Dislike">
+	<form class="form-inline" action = "/ideas/<%= @idea.id %>/likes?like=false" method = "post">
+		<button type = "submit" value = "Dislike" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-thumbs-down"></span> Dislike</button>
 	</form>
 <% end %>
 </div>
-
 <%end%>
-<div class="container" style="padding-top: 15px;">
-	<h3>Comments:</h3>
-	<p>
-	 	<% @idea.comments.each do |comment| %>
-	 	<strong><%= comment.user.username %> :</strong>
-	  <%= comment.content %> </br>
-	  <% end %>
-	</p>
- </div>
 
+<hr/>
+<div class="container">
+	<h3>Comments:</h3>
+	<div style="color:green";>
+		 	<% for_comments = @idea.comments.where(for_or_against: true) %>
+		 	<% for_comments.each do |comment| %>
+		 	<strong><%= comment.user.username %> :</strong>
+		  <%= comment.content %>
+		  <span class="glyphicon glyphicon-circle-arrow-up"></span>
+		  <% end %>
+	</div>
+
+
+	<div style="color:red";>
+		 	<% for_comments = @idea.comments.where(for_or_against: false) %>
+		 	<% for_comments.each do |comment| %>
+		 	<strong><%= comment.user.username %> :</strong>
+		  <%= comment.content %> </br>
+		  <% end %>
+	</div>
+	<br/>
+	<a href = "/">Back To All Ideas</a>
+</div>
+	<hr/>
+</div></div>
 
 
 

@@ -1,12 +1,15 @@
 <div class="container" style="padding-top: 165px;">
-
-<button type="button" class="btn btn-default navbar-btn"><a href="/ideas/new">Post New Idea</a></button>
+<div class="panel panel-primary">
+<div class="panel-heading">
+    <h3 class="panel-title">Ideas</h3>
+  </div>
+  <div class="panel-body">
 
 <% @ideas.each do |idea| %>
 	<div class="idea">
 		<h3><a href="/ideas/<%= idea.id %>"><%= idea.title %></a></h3>
-		<h4>Vote count: <%= idea.vote_count %>
-		 Comment count: <%= idea.comment_count %>
+		<h4>Vote Count: <%= idea.vote_count %>
+		 Comment Count: <%= idea.comment_count %>
 		</h4>
 	
 		<small>(by: <%= User.find(idea.user_id).username %>)</small>
@@ -14,3 +17,4 @@
 <%end%>
 
 </div>
+</div></div>

@@ -28,7 +28,8 @@
         <h1><a href="/">Ideafy</a> - Instant feedback on your idea.</h1>
         <% if current_user %>
           <h4>Welcome to Ideafy. You are currently signed in as <%= current_user.username %>.</h4>
-          <form method="post" action="/logout">
+          <form method="post" action="/logout" class="form-inline">
+          <button type="button" class="btn btn-default inline"><a href="/ideas/new">Post New Idea</a></button>
           <input type="submit" value="Logout" class="btn btn-default navbar-btn">
           </form>
         <% else %>
